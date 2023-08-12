@@ -23,7 +23,6 @@ end_of_the_game = False
 lives = 6
 
 while not end_of_the_game:
-    
     guess = input("Guess a letter: ").lower()
     
     if guess in word_picked:
@@ -35,21 +34,21 @@ while not end_of_the_game:
 
         if letter == guess:
             word_picked[position] = letter
-                  
-    print(f"{' '.join(word_picked)}")
     
-    if not guess in word_picked:
-            lives -= 1
-            lives_left = stages[lives]
+    if guess not in chosen_word:
             print(f"You guessed {guess}, that's not in the word. You lose a life.")
-            print(lives_left)
+            lives -= 1
+            if lives == 0:
+                end_of_the_game = True
+                print("You lose")
+
+    print(f"{' '.join(word_picked)}")    
+        
     
-    
-    elif "_" not in word_picked:
+    if "_" not in word_picked:
         end_of_the_game = True
         print("You Win")
+
+    print(stages[lives])
         
-    elif lives == 0:
-        end_of_the_game = True
-        print("You lose")
          
